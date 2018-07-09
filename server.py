@@ -16,6 +16,8 @@ def mine():
 
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
+    request.on_json_loading_failed = on_json_loading_failed_return_dict
+
     values = request.get_json()
     required = ['sender', 'recipient', 'amount']
 

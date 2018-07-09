@@ -13,7 +13,7 @@ class BlockChain(object):
         self.chain = []
         self.current_transactions = []
 
-        self.new_block(previous_hash=1, proof=100)          # genesis block
+        self.new_block(proof=100, previous_hash=1)          # genesis block
 
     def new_block(self, proof, previous_hash=None):
         # Creates a new Block and adds it to the chain
