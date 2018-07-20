@@ -22,7 +22,7 @@ class BlockChain(object):
             "timestamp": time(),
             "transactions": self.current_transactions,
             "proof": proof,
-            "previous_hash": previous_hash or self.hash(self.chain)
+            "previous_hash": previous_hash or self.hash(self.chain[-1])
         }
 
         self.current_transactions = []
@@ -81,11 +81,11 @@ if __name__ == '__main__':
     # 오브젝트 선언하는 순간, 최최의 genesis block을 생성한다
     bc = BlockChain()
 
-    pprint(bc.chain)
+    pprint(bc.chain[-1])
     input("\n... 제네시스 블럭생성 ...\n\n\n")
 
 
-    blocks_hashed = bc.hash(bc.chain)
+    blocks_hashed = bc.hash(bc.chain[-1])
 
     # strings = 'Hello world!'
     # strings_hashed = bc.hash(strings)
@@ -114,7 +114,7 @@ if __name__ == '__main__':
 
 
 
-    blocks_hashed = bc.hash(bc.chain)
+    blocks_hashed = bc.hash(bc.chain[-1])
 
     # strings = 'Hello world!'
     # strings_hashed = bc.hash(strings)
