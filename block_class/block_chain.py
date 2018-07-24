@@ -78,98 +78,49 @@ class BlockChain(object):
 if __name__ == '__main__':
     from pprint import pprint
 
-    # 오브젝트 선언하는 순간, 최최의 genesis block을 생성한다
+    # 오브젝트 선언하는 순간, 최최의 Genesis Block을 생성한다
     bc = BlockChain()
 
     pprint(bc.chain[-1])
     input("\n... 제네시스 블럭생성 ...\n\n\n")
 
 
+    # 제네시스 블록을 해쉬해서 다음블록에 기록한다.
     blocks_hashed = bc.hash(bc.chain[-1])
-
-    # strings = 'Hello world!'
-    # strings_hashed = bc.hash(strings)
-
     print ("\n... 젠블록에 해쉬함수 적용 / 길이 = {1} bits\
             \n{0} \n\n\n".format(blocks_hashed,len(blocks_hashed)))
-
 
 
     # 블록과 블록사이에서, 2개의 트랜젝션이 발생한다.
     bc.new_transaction(sender='Scrouge', recipient='Alice', amount=200, hash=0)
     bc.new_transaction(sender='Alice', recipient='Bob', amount=150, hash=0)
-
     pprint(bc.current_transactions)
     input("\n... 트랜잭션 2개 발생 ...\n\n\n")
 
 
+    # 새로운 블럭이 발생하면, 이전블록 해쉬와 거래정보가 자동으로 기록된다.
     bc.new_block(proof=100)
-    # bc.hash('block')
-
     pprint(bc.chain)
     input("\n... 새로운 블럭생성(마이닝)...\
-            \n... 자동으로 트랜젝션이 기록 됨 ...\
-            \n... (가독성을 위해 해쉬변환 생략) ...\
-            \n\n\n")
+        \n... 자동으로 트랜젝션과 이전해쉬가 기록 (가독성을 위해 해쉬변환 생략) ...\
+        \n\n\n")
 
 
-
+    # 이전 블록정보를 해쉬한다 (마지막 블럭정보)
     blocks_hashed = bc.hash(bc.chain[-1])
-
-    # strings = 'Hello world!'
-    # strings_hashed = bc.hash(strings)
-
-    print ("\n... 젠블록에 해쉬함수 적용 / 길이 = {1} bits\
-            \n{0} \n\n\n".format(blocks_hashed,len(blocks_hashed)))
+    print ("\n... 이전블록에 해쉬함수 적용 / 길이 = {1} bits\
+    \n{0} \n\n\n".format(blocks_hashed,len(blocks_hashed)))
 
 
-
-    # 블록과 블록사이에서, 2개의 트랜젝션이 발생한다.
+    # 블록과 블록사이에서, 새로운 1개의 트랜젝션이 발생한다.
     bc.new_transaction(sender='Scrouge', recipient='Charlie', amount=1000, hash=0)
-
     pprint(bc.current_transactions)
     input("\n... 트랜잭션 1개 발생 ...\n\n\n")
 
 
+    # 새로운 블록이 생성되면, 그동안 발생한 거래와 이전블럭 해쉬를 자동으로 기록한다.
     bc.new_block(proof=100)
-    # bc.hash('block')
-
-
-    blocks_hashed = bc.hash(bc.chain)
-
-    # strings = 'Hello world!'
-    # strings_hashed = bc.hash(strings)
-
-    print ("\n... 젠블록에 해쉬함수 적용 / 길이 = {1} bits\
-            \n{0} \n\n\n".format(blocks_hashed,len(blocks_hashed)))
-
-
     pprint(bc.chain)
     input("\n... 새로운 블럭생성(마이닝)...\
-            \n\n\n")
-
-"""
-[{'index': 1,
-  'previous_hash': 1,
-  'proof': 100,
-  'timestamp': 1537884901.0780258,
-  'transactions': []},
-
- {'index': 2,
-  'previous_hash': '210ff1905fb19e0d97c54b0255beefc1308a290be9c44169d0c11859fd1e9462',
-  'proof': 100,
-  'timestamp': 1537884906.3354633,
-  'transactions': [{'amount': 200, 'recipient': 'Alice', 'sender': 'Scrouge'},
-                   {'amount': 150, 'recipient': 'Bob', 'sender': 'Alice'}]},
-
- {'index': 3,
-  'previous_hash': '5be97f69bdd5e7f3f0108c0e8fd8a9a177d53fface6dea8241d91555eaa60df3',
-  'proof': 100,
-  'timestamp': 1537884914.4834294,
-  'transactions': [{'amount': 1000,
-                    'recipient': 'Charlie',
-                    'sender': 'Scrouge'}]}]
-
-... 새로운 블럭생성(마이닝)...
-
-"""
+        \n... 자동으로 트랜젝션과 이전해쉬가 기록 (가독성을 위해 해쉬변환 생략) ...\
+        \n\n\n")

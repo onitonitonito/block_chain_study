@@ -1,6 +1,6 @@
 <html>
    <body>
-      <form action = "http://localhost:5000/" method = "post">
+      <form action = "http://localhost:5000/transactions/new" method = "post">
          <p>Sender:<br>
          <input type = "text" name = "sender" value="Alice"/></p>
 
@@ -8,7 +8,7 @@
          <input type = "text" name = "recipient" value="Bob"/></p>
 
          <p>Amount:<br>
-         <input type = "text" name = "amount" value="150"/></p>
+         <input type = "number" name = "amount" value="150"/></p>
 
          <p><input type = "submit" value = "submit" /></p>
       </form>
