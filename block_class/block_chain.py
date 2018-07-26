@@ -57,6 +57,13 @@ class BlockChain(object):
         block_string = json.dumps(block).encode()
         return hashlib.sha256(block_string).hexdigest()
 
+    @staticmethod
+    def valid_proof(last_proof, proof):
+        # arg. of SHA256() should be binary ("".encode()) ... 64 bits
+        guess = str(last_proof * proof).encode()
+        guess_hash = hashlib.sha256(guess).hexdigest()
+        return guess_hash[:4] == "0000"
+
     @property
     def last_block(self):
         # Returns the last Block in the chain
@@ -67,12 +74,6 @@ class BlockChain(object):
         while self.valid_proof(last_proof, proof) is False:
             proof += 1
         return proof
-
-    @staticmethod
-    def valid_proof(last_proof, proof):
-        guess = str(last_proof * proof).encode()
-        guess_hash = hashlib.sha256(guess).hexdigest()
-        return guess_hash[:4] == "0000"
 
 
 if __name__ == '__main__':
