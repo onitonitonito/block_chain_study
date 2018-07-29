@@ -97,7 +97,9 @@ def show_transaction():
 
 @app.route("/write", methods=["GET"])
 def write_chains():
+    chains = bc.write_json()
     response = {
+        "chains": chains,
         "message": "...  Writing whole chains to chains.json ..."
     }
     return jsonify(response), 200

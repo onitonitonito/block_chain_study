@@ -1,11 +1,13 @@
 import hashlib
 
+
 def valid_proof(last_proof, proof):
     # sha256의 인자는 바이너리 스트링을 받는다. encode()= b''
     guess = str(last_proof * proof).encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
     difficulty = "0000"
     return (guess_hash[:len(difficulty)] == difficulty, guess, guess_hash)
+
 
 def proof_of_work(last_proof):
     proof = 0
@@ -16,7 +18,6 @@ def proof_of_work(last_proof):
         guess_hash = valid_proof(last_proof, proof)[2]
         print(guess, guess_hash)
     return proof
-
 
 
 if __name__ == '__main__':
