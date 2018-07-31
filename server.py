@@ -13,12 +13,13 @@ node_identifier = str(uuid4()).replace("-", "")
 
 bc = BlockChain()
 
+
 @app.route("/", methods=["GET"])
 def index():
     return render_template('./chain_help.html')
 
 
-@app.route("/chain", methods=["GET"])
+@app.route("/chains", methods=["GET"])
 def full_chain():
     response = {
         "chain": bc.chain,
@@ -34,27 +35,28 @@ def mine():
     last_proof = last_block["proof"]
 
     proof = bc.proof_of_work(last_proof)
+    conpensation = 100
 
     bc.new_transaction(
         sender="0",
-        recipient = node_identifier,
-        amount= 1)
+        recipient=node_identifier,
+        amount=conpensation)
 
     previous_hash = bc.hash(last_block)
     block = bc.new_block(proof, previous_hash)
 
     response = {
-        "message" :         "... new block forged",
-        "index" :           block["index"],
-        "transactions" :    block["transactions"],
-        "proof" :           block["proof"],
-        "previous_hash" :   block["previous_hash"]
+        "message":         "... new block forged! ...",
+        "index":           block["index"],
+        "transactions":    block["transactions"],
+        "proof":           block["proof"],
+        "previous_hash":   block["previous_hash"]
     }
 
     return jsonify(response), 200
 
 
-@app.route("/transactions/new", methods=["GET","POST"])
+@app.route("/transactions/new", methods=["GET", "POST"])
 def new_transaction():
 
     if request.method == "POST":
@@ -67,7 +69,7 @@ def new_transaction():
         values = {
             "sender": sender,
             "recipient": recipient,
-            "amount": amount }
+            "amount": amount}
 
         required = ["sender", "recipient", "amount"]
 
@@ -81,7 +83,7 @@ def new_transaction():
 
         response = {
             "message": "... Transaction will be added to Block {0}".format(index),
-            "current TX" : bc.current_transactions
+            "current TX": bc.current_transactions
         }
         return jsonify(response), 201
 
@@ -103,7 +105,6 @@ def write_chains():
         "message": "...  Writing whole chains to chains.json ..."
     }
     return jsonify(response), 200
-
 
 
 if __name__ == "__main__":
