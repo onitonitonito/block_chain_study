@@ -92,6 +92,37 @@ class BlockChain(object):
             json.dump(self.chain, f)
         return self.chain
 
+    def show_all_transaction(self, chains):
+        echo = ""
+        for n in range(len(chains)):
+
+            # 블럭 마이닝 보상거래 1개 이상의 거래가 존재 할 경우
+            if len(chains[n]['transactions']) > 1:
+                echo += "\n\n------ index.%s / [%s] -------"%(
+                    chains[n]['index'],
+                    len(chains[n]['transactions'])-1)
+
+                for m in range(len(chains[n]['transactions'])):
+
+                    # 마이닝 보상거래는 출력에서 제외 (보상: sender="0")
+                    if chains[n]['transactions'][m]['sender'] is "0":
+                        pass
+
+                    else:
+                        echo += "\
+                            \n* Sender   = {0} \
+                            \n* Recipent = {1} \
+                            \n* Amount   = {2:,}\n".format(
+                            chains[n]['transactions'][m]['sender'],
+                            chains[n]['transactions'][m]['recipient'],
+                            int(chains[n]['transactions'][m]['amount']),)
+
+            else:
+                echo += "\n\n... index : %s ... NO TRANSACTIONS IN THIS LEDGER!\
+                        \n      (ONLY MINNING CONPENSATION or NOT)..." % (n + 1)
+
+        return echo
+
 
 if __name__ == '__main__':
     from pprint import pprint

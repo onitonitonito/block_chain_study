@@ -1,3 +1,6 @@
+"""
+* Flask를 이용해서, 블록체인 API를 제공
+"""
 # import json
 # from textwrap import dedent
 
@@ -5,6 +8,7 @@ from flask import Flask, jsonify, request, render_template, redirect
 from uuid import uuid4
 
 from block_class.block_chain import BlockChain
+
 
 app = Flask(__name__)
 
@@ -31,6 +35,7 @@ def full_chain():
 
 @app.route("/mine", methods=["GET"])
 def mine():
+    # 마지막 블럭의 작업증명을 기준으로 POW을 계산한다 (보상100)
     last_block = bc.last_block
     last_proof = last_block["proof"]
 
@@ -58,7 +63,7 @@ def mine():
 
 @app.route("/transactions/new", methods=["GET", "POST"])
 def new_transaction():
-
+    # 수신,송신,금액이 존재하면 거래를 기록하고 내용을 보여줌
     if request.method == "POST":
         # values = request.get_json()
 
@@ -93,12 +98,22 @@ def new_transaction():
 
 @app.route("/transactions", methods=["GET"])
 def show_transaction():
+    # 블록에 기록하기 위해 모인, 기록 전, 거래자료를 조회한다.
     response = bc.current_transactions
     return jsonify(response), 200
 
 
+@app.route("/transactions/all", methods=["GET"])
+def show_transaction_all():
+    # 블록체인에서 모든 거래내역만 뽑아낸다 (채굴보상은 거래제외)
+    echo = bc.show_all_transaction(bc.chain)
+    echo = "<pre>" + echo + "</pre>"
+
+    return echo
+
 @app.route("/write", methods=["GET"])
 def write_chains():
+    # 이제까지 모인 체인블록을 Json 화일에 기록/보관한다.
     chains = bc.write_json()
     response = {
         "chains": chains,
