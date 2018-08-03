@@ -74,7 +74,9 @@ class BlockChain(object):
         # arg. of SHA256() should be binary ("".encode()) ... 64 bits
         guess = str(last_proof * proof).encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
-        return guess_hash[:4] == "0000"
+        # mining is to find a hash starting with difficulty (consecutive zeros)
+        difficulty = "0000"
+        return guess_hash[:len(difficulty)] == difficulty
 
     @property
     def last_block(self):
