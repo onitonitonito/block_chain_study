@@ -1,7 +1,7 @@
 import re
 
-FROM_SCRIPT = '_____script.txt'
-TO_MOD_SCRIPT = '_____modified_script.txt'
+FROM_SCRIPT = '__script.txt'
+TO_MOD_SCRIPT = '__modified_script.txt'
 
 
 with open(FROM_SCRIPT, mode='r', encoding='utf-8') as f:
