@@ -10,8 +10,10 @@ public class Transaction {
     public class Input {
         /** hash of the Transaction whose output is being used */
         public byte[] prevTxHash;
+
         /** used output's index in the previous transaction */
         public int outputIndex;
+
         /** the signature produced to check validity */
         public byte[] signature;
 
@@ -34,6 +36,7 @@ public class Transaction {
     public class Output {
         /** value in bitcoins of the output */
         public double value;
+
         /** the address or public key of the recipient */
         public PublicKey address;
 
@@ -87,18 +90,24 @@ public class Transaction {
     public byte[] getRawDataToSign(int index) {
         // ith input and all outputs
         ArrayList<Byte> sigData = new ArrayList<Byte>();
+
         if (index > inputs.size())
             return null;
+
         Input in = inputs.get(index);
         byte[] prevTxHash = in.prevTxHash;
         ByteBuffer b = ByteBuffer.allocate(Integer.SIZE / 8);
+
         b.putInt(in.outputIndex);
         byte[] outputIndex = b.array();
+
         if (prevTxHash != null)
             for (int i = 0; i < prevTxHash.length; i++)
                 sigData.add(prevTxHash[i]);
+
         for (int i = 0; i < outputIndex.length; i++)
             sigData.add(outputIndex[i]);
+
         for (Output op : outputs) {
             ByteBuffer bo = ByteBuffer.allocate(Double.SIZE / 8);
             bo.putDouble(op.value);
@@ -110,10 +119,13 @@ public class Transaction {
             for (int i = 0; i < addressBytes.length; i++)
                 sigData.add(addressBytes[i]);
         }
+
         byte[] sigD = new byte[sigData.size()];
         int i = 0;
+
         for (Byte sb : sigData)
             sigD[i++] = sb;
+
         return sigD;
     }
 
@@ -123,38 +135,48 @@ public class Transaction {
 
     public byte[] getRawTx() {
         ArrayList<Byte> rawTx = new ArrayList<Byte>();
+
         for (Input in : inputs) {
             byte[] prevTxHash = in.prevTxHash;
             ByteBuffer b = ByteBuffer.allocate(Integer.SIZE / 8);
             b.putInt(in.outputIndex);
             byte[] outputIndex = b.array();
             byte[] signature = in.signature;
+
             if (prevTxHash != null)
                 for (int i = 0; i < prevTxHash.length; i++)
                     rawTx.add(prevTxHash[i]);
+
             for (int i = 0; i < outputIndex.length; i++)
                 rawTx.add(outputIndex[i]);
+
             if (signature != null)
                 for (int i = 0; i < signature.length; i++)
                     rawTx.add(signature[i]);
         }
+
         for (Output op : outputs) {
             ByteBuffer b = ByteBuffer.allocate(Double.SIZE / 8);
             b.putDouble(op.value);
             byte[] value = b.array();
             byte[] addressBytes = op.address.getEncoded();
+
             for (int i = 0; i < value.length; i++) {
                 rawTx.add(value[i]);
             }
+
             for (int i = 0; i < addressBytes.length; i++) {
                 rawTx.add(addressBytes[i]);
             }
 
         }
+
         byte[] tx = new byte[rawTx.size()];
         int i = 0;
+
         for (Byte b : rawTx)
             tx[i++] = b;
+
         return tx;
     }
 

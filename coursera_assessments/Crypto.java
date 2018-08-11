@@ -12,6 +12,7 @@ public class Crypto {
      *         have to deal with any of the implementation details of the specific signature
      *         algorithm
      */
+
     public static boolean verifySignature(PublicKey pubKey, byte[] message, byte[] signature) {
         Signature sig = null;
         try {
@@ -19,17 +20,20 @@ public class Crypto {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+
         try {
             sig.initVerify(pubKey);
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
+
         try {
             sig.update(message);
             return sig.verify(signature);
         } catch (SignatureException e) {
             e.printStackTrace();
         }
+
         return false;
 
     }

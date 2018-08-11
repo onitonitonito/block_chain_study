@@ -46,6 +46,7 @@ public class UTXOPool {
     public ArrayList<UTXO> getAllUTXO() {
         Set<UTXO> setUTXO = H.keySet();
         ArrayList<UTXO> allUTXO = new ArrayList<UTXO>();
+
         for (UTXO ut : setUTXO) {
             allUTXO.add(ut);
         }

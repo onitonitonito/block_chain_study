@@ -1,3 +1,6 @@
-# Temporary Files
-__pycache__/
+#__________________________
+# 1. build & Temporary Files
+
 .ipynb_checkpoints
+__pycache__/
+*.class

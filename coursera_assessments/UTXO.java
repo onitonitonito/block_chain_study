@@ -35,6 +35,7 @@ public class UTXO implements Comparable<UTXO> {
         if (other == null) {
             return false;
         }
+
         if (getClass() != other.getClass()) {
             return false;
         }
@@ -42,8 +43,10 @@ public class UTXO implements Comparable<UTXO> {
         UTXO utxo = (UTXO) other;
         byte[] hash = utxo.txHash;
         int in = utxo.index;
+
         if (hash.length != txHash.length || index != in)
             return false;
+
         for (int i = 0; i < hash.length; i++) {
             if (hash[i] != txHash[i])
                 return false;
@@ -66,10 +69,13 @@ public class UTXO implements Comparable<UTXO> {
     public int compareTo(UTXO utxo) {
         byte[] hash = utxo.txHash;
         int in = utxo.index;
+
         if (in > index)
             return -1;
+
         else if (in < index)
             return 1;
+
         else {
             int len1 = txHash.length;
             int len2 = hash.length;
