@@ -5,7 +5,7 @@ def valid_proof(last_proof, proof):
     # sha256의 인자는 바이너리 스트링을 받는다. encode()= b''
     guess = str(last_proof * proof).encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
-    difficulty = "0000"
+    difficulty = "000000"
     return (guess_hash[:len(difficulty)] == difficulty, guess, guess_hash)
 
 
