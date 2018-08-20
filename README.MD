@@ -1,6 +1,7 @@
 ---
-language : python, html
-labrary : flask
+Language : **PYTHON**
+Library : **FLASK**
+Data form : **JSON**
 ---
 
 <br><br>
@@ -36,13 +37,13 @@ When '**chain.json**', a written history file, exists, the block history will be
 
 <br><br>
 ### 3. ABOUT JSON
-In block_class, there're 3 jason files.
+In block_class, there're 3 json files.
 
 > 1. **blcok.json** - the first intention, but to many hashs
 > 2. **chains_old.json** - already described on the top.
 > 3. **genesis.json** - Ethurium genesis block format, just refer to it
 
-This it not exact as it can be, but just alludes coinbase transaction. Because it is compensation for mining, sender is nobody, recipient is randomly generated node ID and amount is set as 100, form of variable for mining reward.
+This is not exact as it can be, but just alludes coinbase transaction. Because it is compensation for mining, sender is nobody, recipient is randomly generated node ID and amount is set as 100, form of variable for mining reward.
 
 <pre>
     {
