@@ -1,5 +1,8 @@
-#__________________________
-# 1. build & Temporary Files
+#___________________________________
+#  1. cache, build, db sqlite3 files
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.ipynb_checkpoints/
 __pycache__/
+.idea/
 *.class
