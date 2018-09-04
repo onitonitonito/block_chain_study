@@ -8,8 +8,8 @@ import time
 from pprint import pprint
 from hashlib import sha256
 
-mining_uid = 'node_identifier_uid'
-transactions = [
+MINING_UID = 'node_identifier_uid'
+TRANSACTIONS = [
     {
         'sender': 'Alice',
         'recipient': 'Bob',
@@ -22,7 +22,7 @@ transactions = [
     },
     {
         'sender': 'coinbase_reward',
-        'recipient': mining_uid,
+        'recipient': MINING_UID,
         'amount': 200
     },
 ]
@@ -33,7 +33,7 @@ block = {
     'difficulty': '00000',
     'nonce': 0,
     'hash_previous': '000005fa8482b821aff9b2ce6103f69e',
-    'transaction': transactions,
+    'transaction': TRANSACTIONS,
 }
 
 

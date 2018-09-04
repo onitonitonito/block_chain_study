@@ -2,10 +2,10 @@ import hashlib
 
 
 def valid_proof(last_proof, proof):
-    # sha256의 인자는 바이너리 스트링을 받는다. encode()= b''
+    # sha256 함수는 바이너리 스트링을 받는다. encode()= b''
     guess = str(last_proof * proof).encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
-    difficulty = "000000"
+    difficulty = "000000000"
     return (guess_hash[:len(difficulty)] == difficulty, guess, guess_hash)
 
 
@@ -21,7 +21,7 @@ def proof_of_work(last_proof):
 
 
 if __name__ == '__main__':
-    last_proof = 111
+    last_proof = 1
     print(proof_of_work(last_proof))
 
 
@@ -45,4 +45,10 @@ b'104600184' 000009ddc25ce76342c3658040ae60f68f8ad8fa80b97ba7fada45cedc6f5c75
 
 Process returned 0 (0x0)        execution time : 78.072 s
 계속하려면 아무 키나 누르십시오 . . .
+
+....
+
+
+
+
 """
