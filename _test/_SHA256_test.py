@@ -1,6 +1,7 @@
 """
-*
+# 해쉬함수 변환 테스트
 """
+# print(__doc__)
 
 import hashlib
 
@@ -46,7 +47,7 @@ def test_00():
 
 
 def get_hash(bin_string, hex=0):
-    """ 다이제스트 or 핵사다이제스트 hex 파라미터 선택 """
+    """ 다이제스트 or 핵사다이제스트 = hex 파라미터 선택 """
     hs = hashlib.sha256()
     hs.update(bin_string)
 
@@ -88,5 +89,19 @@ def main(bin_str):
 
 if __name__ == '__main__':
     MSL_STRING = b'Hello SHA-256 World!'
-
+    # test_00()
     main(MSL_STRING)
+    pass
+
+
+
+
+"""
+#     t2 = b'Hello SHA-256 World!'
+#
+#     sha256(t2).digest() = 32 bit
+#     sha256(t2).hexdigest() = 64 bit
+#     bin(int(sha256(t2).hexdigest(), 16)) = 256 bit
+# 0101001010111110100110100001011100110001010001010000101111110010011101101011111101001001011011010111110000110111110010010011110101110111100001110100111111010110000011011001100010111110010110000010010110001000000010011111100011000100110101010101100101011110
+# = 256 bits
+"""

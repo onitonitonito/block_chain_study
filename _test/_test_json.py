@@ -2,15 +2,17 @@
 * 블럭정보.json 를 읽어서, 거래 정보를 추출한다.
 * 마이닝시 보상이 발생하므로, 매 블럭 거래정보 있음
 """
+# print(__doc__)
 
-import os
+
 import json
+
 from pprint import pprint
+from _general_config import ROOT
 
-FILE = "/block_class/chains_old.json"
-
-DIRS = os.path.dirname(__file__).partition("block_chain_study\\")
-FILE_W_DIR = DIRS[0] + DIRS[1] + FILE
+# BLOCK_INFO.JSON TO SHOW INSIDE of TX
+# FILE_W_DIR = ROOT + "block_class/block.json"
+FILE_W_DIR = ROOT + "block_class/chains_old.json"
 
 
 def get_json(file_w_dir):

@@ -6,3 +6,11 @@
 __pycache__/
 .idea/
 *.class
+
+
+#___________________________________
+#  2. hidden on purpose
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_flask_app_test.py
+_private*
+*.jon
