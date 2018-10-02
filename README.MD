@@ -21,7 +21,7 @@ regarding **chain.json** file, there's no chain.json at the beginning. it is gen
 
 When the '**chain.json**', a written history file, exists, the block history will be restored autonomously. To avoid at first, I changed the file name to '**chain_old.json**', which has the several depth of block history. you can also refer to it how block is constructed.
 
-![bash_run image](/_static/bash_run.png)
+![bash_run image](./_static/img/bash_run.png)
 
 
 
@@ -30,7 +30,7 @@ When the '**chain.json**', a written history file, exists, the block history wil
 
 > 'http://localhost:5000' in browser
 
-![main_screen](/_static/chain_help.png)
+![main_screen](./_static/img/chain_help.png)
 
 
 
@@ -51,12 +51,11 @@ In block_class, there're 3 json files.
   "amount": 100
 }
 </pre>
-
 <br><br>
 This is not exact as it can be, but just alludes coinbase transaction. Because it is compensation for mining, sender is nobody, recipient is randomly generated node ID and amount is set as 100, form of variable for mining reward.
 
 
-![dir_structure](/_static/structures.png)
+![dir_structure](./_static/img/structures.png)
 
 
 

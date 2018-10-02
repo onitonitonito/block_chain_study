@@ -1,18 +1,30 @@
 """
-* 블럭정보.json 를 읽어서, 거래 정보를 추출한다.
-* 마이닝시 보상이 발생하므로, 매 블럭 거래정보 있음
+# 마이닝시 보상이 발생하므로, 매 블럭 거래정보 있음
+# 블럭정보.json 를 읽어서, 거래 정보를 추출한다.
+#
 """
-# print(__doc__)
+print(__doc__)
 
 
+import os
+import sys
 import json
-
 from pprint import pprint
-from _general_config import ROOT
+
+# '루트'와 '작업'디렉토리 설정 - for 스크립트런
+HOME = "block_chain_study"
+DIRS = os.path.dirname(__file__).partition(HOME)
+ROOT = DIRS[0] + DIRS[1] + "/"
+sys.path.append(ROOT)
+
+# 스크립트런 '한글' 표시를 위한 커스텀 모듈 실행
+from _static.config import _script_run_utf8
+_script_run_utf8.main()
+
 
 # BLOCK_INFO.JSON TO SHOW INSIDE of TX
-# FILE_W_DIR = ROOT + "block_class/block.json"
-FILE_W_DIR = ROOT + "block_class/chains_old.json"
+# FILE_W_DIR = ROOT + "_static/json/block.json"
+FILE_W_DIR = ROOT + "_static/json/chains_old.json"
 
 
 def get_json(file_w_dir):

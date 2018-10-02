@@ -28,5 +28,5 @@ data['people'].append({
 # pprint(data, width=60); quit()
 
 # dict data dump(over-write) to json file
-with open(ROOT + '_test/people.json', 'w') as f:
+with open(ROOT + '_static/json/people.json', 'w') as f:
     json.dump(data, f)
