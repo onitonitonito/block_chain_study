@@ -13,27 +13,27 @@ import matplotlib.pyplot as plt
 def plot_elliptic(a=-1, b=1):
     y, x = np.ogrid[-5:5:100j, -5:5:100j]
     _plot = plt.contour(
-        x.ravel(),
-        y.ravel(),
-        pow(y, 2) - pow(x, 3) - x * a - b,
-        [0],
-    )
+            x.ravel(),
+            y.ravel(),
+            pow(y, 2) - pow(x, 3) - x * a - b,
+            [0],
+        )
     return _plot
 
 
 def plot_checksum(a, b):
     a, b = np.ogrid[-5:5:100j, -5:5:100j]
     _plot = plt.contour(
-        a.ravel(),
-        b.ravel(),
-        4 * pow(a, 3) + 27 * pow(b, 2),
-        [0],
-    )
+            a.ravel(),
+            b.ravel(),
+            4 * pow(a, 3) + 27 * pow(b, 2),
+            [0],
+        )
     return _plot
 
 
 def checksum(a, b):
-    return (4 * pow(a,3) + 47 * pow(b,2) == 0)
+    return (4 * pow(a, 3) + 47 * pow(b, 2) == 0)
 
 
 def show_decorated(a, b, title=1, xlabel=1):
@@ -90,17 +90,17 @@ def show_various_curves_comparison():
         plot_elliptic(0, _b)
     show_decorated(0, _b)
 
-def show_plot_checksum():
-        for a in range(-12, 13, 1):
-            for b in range(-12, 13, 1):
-                if checksum(a, b):
-                    print("{2:}: 4*{0:}^3 + 27*{1:}^2 = 0 : [{0:},{1:}]".format(
-                                    a, b, checksum(a, b)
-                                )
-                            )
-                plot_checksum(a, b)
-        plt.grid()
 
+def show_plot_checksum():
+    for a in range(-12, 13, 1):
+        for b in range(-12, 13, 1):
+            if checksum(a, b):
+                print("{2:}: 4*{0:}^3 + 27*{1:}^2 = 0 : [{0:},{1:}]".format(
+                    a, b, checksum(a, b)
+                )
+                )
+            plot_checksum(a, b)
+    plt.grid()
 
 
 if __name__ == '__main__':

@@ -2,9 +2,8 @@
 # 블록체인 구현 (블록생성, 트랜잭션, 작업증명, 마이닝)
 # https://goo.gl/M6XU5v
 #
-"""
+\n\n"""
 print(__doc__)
-
 
 import os
 import sys
